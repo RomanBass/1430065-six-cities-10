@@ -1,3 +1,4 @@
+import { Browser, Route, Routes } from 'react-router-dom';
 import Main from '../../pages/main/main';
 
 type AppScreenProps = {
