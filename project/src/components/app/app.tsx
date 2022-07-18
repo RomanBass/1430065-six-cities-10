@@ -19,13 +19,12 @@ function App({ rentalOffersNumber }: AppScreenProps): JSX.Element {
         <Route path={AppRoute.RootPath} element={<Main rentalOffersNumber={rentalOffersNumber} />} />
         <Route path={AppRoute.LoginPath} element={<Login />} />
         <Route path={AppRoute.FavoritesPath} element={
-          <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+          <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
             <Favorites />
           </PrivateRoute>
         }
         />
         <Route path={AppRoute.OfferPath} element={<Room />} />
-
         <Route path={AppRoute.WrongPath} element={<NotFound />} />
 
       </Routes>
