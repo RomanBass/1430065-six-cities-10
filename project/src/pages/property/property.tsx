@@ -1,13 +1,6 @@
 import Logo from '../../components/logo/logo';
-import { Offers } from '../../types/offer';
-import { Reviews} from '../../types/review';
 
-type RoomProps = {
-  offers: Offers;
-  reviews: Reviews;
-}
-
-function Property({offers, reviews}: RoomProps): JSX.Element {
+function Property(): JSX.Element {
   return (
     <div className="page">
       <header className="header">
