@@ -4,15 +4,18 @@ import Login from '../../pages/login/login';
 import Favorites from '../../pages/favorites/favorites';
 import Room from '../../pages/property/property';
 import NotFound from '../../components/not-found/not-found';
-
+import {Offers} from '../../types/offer';
+import {Reviews} from '../../types/review';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import PrivateRoute from '../private-route/private-route';
 
 type AppScreenProps = {
   rentalOffersNumber: number;
+  offers: Offers;
+  reviews:Reviews;
 }
 
-function App({ rentalOffersNumber }: AppScreenProps): JSX.Element {
+function App({ rentalOffersNumber, offers, reviews }: AppScreenProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
