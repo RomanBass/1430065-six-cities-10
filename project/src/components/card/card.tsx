@@ -6,12 +6,26 @@ type CardProps = {
 }
 
 function Card({ offer, setActiveCard }: CardProps): JSX.Element {
+
+  const renderPremiumLabel = () => {
+    if (offer.isPremium) {
+      return (
+        <div className="place-card__mark">
+          <span>Premium</span>
+        </div>
+      );
+    } else {
+      return null;
+    }
+  };
+
   return (
     <article
       className="cities__card place-card"
       onMouseEnter={() => setActiveCard(offer.id)}
       onMouseLeave={() => setActiveCard(null)}
     >
+      {renderPremiumLabel()}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="/">
           <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="Place" />
@@ -33,11 +47,11 @@ function Card({ offer, setActiveCard }: CardProps): JSX.Element {
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
             <span style={{ width: '80%' }}></span>
-            <span className="visually-hidden">Rating</span>
+            <span className="visually-hidden">{offer.rating}</span>
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="/">Wood and stone place</a>
+          <a href="/">{offer.title}</a>
         </h2>
         <p className="place-card__type">{offer.type}</p>
       </div>

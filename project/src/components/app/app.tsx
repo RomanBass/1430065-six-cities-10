@@ -22,7 +22,7 @@ function App({ rentalOffersNumber, offers, reviews }: AppScreenProps): JSX.Eleme
         <Route path={AppRoute.RootPath} element={<Main rentalOffersNumber={rentalOffersNumber} />} />
         <Route path={AppRoute.LoginPath} element={<Login />} />
         <Route path={AppRoute.FavoritesPath} element={
-          <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
+          <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
             <Favorites />
           </PrivateRoute>
         }
