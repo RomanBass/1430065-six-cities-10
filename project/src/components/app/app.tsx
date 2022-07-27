@@ -27,7 +27,7 @@ function App({ rentalOffersNumber, offers, reviews }: AppScreenProps): JSX.Eleme
           </PrivateRoute>
         }
         />
-        <Route path={AppRoute.OfferPath} element={<Room />} />
+        <Route path={AppRoute.OfferPath} element={<Room offers={offers} reviews={reviews}/>} />
         <Route path={AppRoute.WrongPath} element={<NotFound />} />
 
       </Routes>
