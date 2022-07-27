@@ -1,5 +1,6 @@
 import Logo from '../../components/logo/logo';
 import { offers } from '../../mocks/offers';
+import {Link} from 'react-router-dom';
 
 function Favorites(): JSX.Element {
   const renderFavoriteCards = offers.filter((offer) => offer.isFavorite === true)
@@ -8,17 +9,17 @@ function Favorites(): JSX.Element {
         <li key={offer.id} className="favorites__locations-items">
           <div className="favorites__locations locations locations--current">
             <div className="locations__item">
-              <a className="locations__item-link" href="/">
+              <Link className="locations__item-link" to={`../offer/${(offer.id).toString()}`}>
                 <span>{offer.city.name}</span>
-              </a>
+              </Link>
             </div>
           </div>
           <div className="favorites__places">
             <article className="favorites__card place-card">
               <div className="favorites__image-wrapper place-card__image-wrapper">
-                <a href="/">
+                <Link to={`../offer/${(offer.id).toString()}`}>
                   <img className="place-card__image" src={offer.previewImage} width="150" height="110" alt={offer.title} />
-                </a>
+                </Link>
               </div>
               <div className="favorites__card-info place-card__info">
                 <div className="place-card__price-wrapper">
@@ -40,7 +41,7 @@ function Favorites(): JSX.Element {
                   </div>
                 </div>
                 <h2 className="place-card__name">
-                  <a href="/">{offer.title}</a>
+                  <Link to={`../offer/${(offer.id).toString()}`}>{offer.title}</Link>
                 </h2>
                 <p className="place-card__type">{offer.type}</p>
               </div>
@@ -87,9 +88,9 @@ function Favorites(): JSX.Element {
         </div>
       </main>
       <footer className="footer container">
-        <a className="footer__logo-link" href="main.html">
+        <Link className="footer__logo-link" to="/">
           <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33" />
-        </a>
+        </Link>
       </footer>
     </div >
 
