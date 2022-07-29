@@ -1,15 +1,41 @@
-function Card(): JSX.Element {
+import { Offer } from '../../types/offer';
+import { Link } from 'react-router-dom';
+
+type CardProps = {
+  offer: Offer;
+  setActiveCard: (arg: number | null) => void;
+}
+
+function Card({ offer, setActiveCard }: CardProps): JSX.Element {
+
+  const renderPremiumLabel = () => {
+    if (offer.isPremium) {
+      return (
+        <div className="place-card__mark">
+          <span>Premium</span>
+        </div>
+      );
+    } else {
+      return null;
+    }
+  };
+
   return (
-    <article className="cities__card place-card">
+    <article
+      className="cities__card place-card"
+      onMouseEnter={() => setActiveCard(offer.id)}
+      onMouseLeave={() => setActiveCard(null)}
+    >
+      {renderPremiumLabel()}
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="/">
-          <img className="place-card__image" src="img/room.jpg" width="260" height="200" alt="Place" />
-        </a>
+        <Link to={`offer/${(offer.id).toString()}`}>
+          <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="Place" />
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
-            <b className="place-card__price-value">&euro;80</b>
+            <b className="place-card__price-value">&euro;{offer.price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
@@ -22,13 +48,13 @@ function Card(): JSX.Element {
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
             <span style={{ width: '80%' }}></span>
-            <span className="visually-hidden">Rating</span>
+            <span className="visually-hidden">{offer.rating}</span>
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="/">Wood and stone place</a>
+          <Link to={`offer/${(offer.id).toString()}`}>{offer.title}</Link>
         </h2>
-        <p className="place-card__type">Private room</p>
+        <p className="place-card__type">{offer.type}</p>
       </div>
     </article>
 
