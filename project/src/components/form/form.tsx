@@ -25,7 +25,7 @@ function Form(props: FormProps): JSX.Element {
         />
         <label htmlFor={`${rating.starsNumber}-stars`} className="reviews__rating-label form__rating-label" title={rating.description}>
           <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"></use>
+            <use xlinkHref="img/sprite.svg#icon-star"></use>
           </svg>
         </label>
       </Fragment>
