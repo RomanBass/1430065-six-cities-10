@@ -2,9 +2,10 @@ import CardList from '../../components/offers-list/offers-list';
 import Logo from '../../components/logo/logo';
 import {offers} from '../../mocks/offers';
 import {useState} from 'react';
+import Map from '../../components/map/map';
 
 type MainScreenProps = {
-  rentalOffersNumber: number
+  rentalOffersNumber: number;
 }
 
 function Main({ rentalOffersNumber }: MainScreenProps): JSX.Element {
@@ -97,7 +98,7 @@ function Main({ rentalOffersNumber }: MainScreenProps): JSX.Element {
               <CardList offers={offers} setActiveCard={setActiveCard} />
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <section className="cities__map map"><Map offer={offers[0]}/></section>
             </div>
           </div>
         </div>
