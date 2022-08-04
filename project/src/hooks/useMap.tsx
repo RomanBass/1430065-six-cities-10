@@ -2,7 +2,7 @@ import { MutableRefObject, useEffect, useState } from 'react';
 import {Map, TileLayer} from 'leaflet';
 import {Offer} from '../types/offer';
 
-function useMap(mapRef: MutableRefObject<HTMLElement | null>, offer: Offer) {
+function useMap(mapRef: MutableRefObject<HTMLElement | null>, offer: Offer): Map | null {
   const [map, setMap] = useState<Map | null>(null);
 
   useEffect(() => {
