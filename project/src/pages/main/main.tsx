@@ -98,7 +98,7 @@ function Main({ rentalOffersNumber }: MainScreenProps): JSX.Element {
               <CardList offers={offers} setActiveCard={setActiveCard} />
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"><Map offer={offers[0]}/></section>
+              <section className="cities__map map"><Map offer={offers[0]} offers={offers}/></section>
             </div>
           </div>
         </div>
