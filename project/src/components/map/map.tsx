@@ -32,8 +32,6 @@ function Map(props: MapProps): JSX.Element {
 
   useEffect(() => {
 
-    // eslint-disable-next-line no-console
-    console.log(offers, map);
     if (map) {
       offers.forEach((property) => {
         const marker = new Marker({
