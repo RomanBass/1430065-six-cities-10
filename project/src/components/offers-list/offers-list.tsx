@@ -3,11 +3,11 @@ import Card from '../card/card';
 
 type CardListProps = {
   offers: Offers;
-  setActiveCard:(arg:number|null) => void;
+  onListCardHover:(arg:number|null) => void;
 }
 
-function CardList({ offers, setActiveCard}: CardListProps): JSX.Element {
-  const OffersList = offers.map((offer) => <Card key={offer.id} offer={offer} setActiveCard={setActiveCard} />);
+function CardList({ offers, onListCardHover}: CardListProps): JSX.Element {
+  const OffersList = offers.map((offer) => <Card key={offer.id} offer={offer} onListCardHover={onListCardHover} />);
 
   return (
     <div className="cities__places-list places__list tabs__content">{OffersList}</div>
