@@ -1,4 +1,3 @@
-//import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Icon, Marker} from 'leaflet';
 
@@ -11,16 +10,15 @@ import {URL_MARKER_DEFAULT, URL_MARKER_CURRENT} from '../../const';
 type MapProps = {
   offer: Offer;
   offers: Offers;
+  selectedOffer: Offer | undefined;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const defaultCustomIcon = new Icon({
   iconUrl: URL_MARKER_DEFAULT,
   iconSize: [40, 40],
   iconAnchor: [20, 40]
 });
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const currentCustomIcon = new Icon({
   iconUrl: URL_MARKER_CURRENT,
   iconSize: [40, 40],
@@ -28,11 +26,14 @@ const currentCustomIcon = new Icon({
 });
 
 function Map(props: MapProps): JSX.Element {
-  const {offer, offers} = props;
+  const {offer, offers, selectedOffer} = props;
   const mapRef = useRef(null);
   const map = useMap(mapRef, offer);
 
   useEffect(() => {
+
+    // eslint-disable-next-line no-console
+    console.log(offers, map);
     if (map) {
       offers.forEach((property) => {
         const marker = new Marker({
@@ -40,11 +41,14 @@ function Map(props: MapProps): JSX.Element {
           lng: property.location.longitude,
         });
 
-        marker.setIcon(defaultCustomIcon).addTo(map);
-        //marker.addTo(map);
+        marker.setIcon(selectedOffer !== undefined && property.id === selectedOffer.id
+          ? currentCustomIcon
+          : defaultCustomIcon)
+          .addTo(map);
       });
     }
-  }, [map, offers]);
+
+  }, [map, offers, selectedOffer]);
 
   return <div style={{height: '100%'}} ref={mapRef}></div>;
 }

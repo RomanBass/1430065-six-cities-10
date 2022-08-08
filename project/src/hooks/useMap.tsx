@@ -1,14 +1,14 @@
-import { MutableRefObject, useEffect, useRef } from 'react';
+import { MutableRefObject, useEffect, useRef, useState } from 'react';
 import {Map, TileLayer} from 'leaflet';
 import {Offer} from '../types/offer';
 
 
 function useMap(mapRef: MutableRefObject<HTMLElement | null>, offer: Offer): Map | null {
-  //const [map, setMap] = useState<Map | null>(null);
-  const map = useRef<Map | null>(null);
+  const [map, setMap] = useState<Map | null>(null);
+  const isFirstRender = useRef(true);
 
   useEffect(() => {
-    if (mapRef.current !== null && map.current === null) {
+    if (isFirstRender.current && mapRef.current !== null && map === null) {
       const instance = new Map(mapRef.current, {
         center: {
           lat: offer.city.location.latitude,
@@ -16,6 +16,8 @@ function useMap(mapRef: MutableRefObject<HTMLElement | null>, offer: Offer): Map
         },
         zoom: offer.city.location.zoom,
       });
+
+      isFirstRender.current = false;
 
       const layer = new TileLayer(
         'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
@@ -27,12 +29,13 @@ function useMap(mapRef: MutableRefObject<HTMLElement | null>, offer: Offer): Map
 
       instance.addLayer(layer);
 
-      //setMap(instance);
-      map.current = instance;
+      setMap(instance);
+
     }
+
   }, [mapRef, map, offer]);
 
-  return map.current;
+  return map;
 }
 
 export default useMap;

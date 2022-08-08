@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 
 type CardProps = {
   offer: Offer;
-  setActiveCard: (arg: number | null) => void;
+  onListCardHover: (arg: number | null) => void;
 }
 
-function Card({ offer, setActiveCard }: CardProps): JSX.Element {
+function Card({ offer, onListCardHover }: CardProps): JSX.Element {
 
   const renderPremiumLabel = () => {
     if (offer.isPremium) {
@@ -20,11 +20,14 @@ function Card({ offer, setActiveCard }: CardProps): JSX.Element {
     }
   };
 
+  const listCardHoverHandler = () => {
+    onListCardHover(offer.id);
+  };
+
   return (
     <article
       className="cities__card place-card"
-      onMouseEnter={() => setActiveCard(offer.id)}
-      onMouseLeave={() => setActiveCard(null)}
+      onMouseEnter={listCardHoverHandler}
     >
       {renderPremiumLabel()}
       <div className="cities__image-wrapper place-card__image-wrapper">
