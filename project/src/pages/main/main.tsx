@@ -103,10 +103,12 @@ function Main({ rentalOffersNumber }: MainScreenProps): JSX.Element {
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
-              <CardList offers={offers} onListCardHover={onListCardHover} />
+              <CardList offers={offers} onListCardHover={onListCardHover} className={'cities__card place-card'} imageClassName={'cities__image-wrapper place-card__image-wrapper'} starsSpanWidth={80}/>
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"><Map offer={offers[0]} offers={offers} selectedOffer={selectedOffer}/></section>
+              <section className="cities__map map">
+                <Map offer={offers[0]} offers={offers} selectedOffer={selectedOffer}/>
+              </section>
             </div>
           </div>
         </div>

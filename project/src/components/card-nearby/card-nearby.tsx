@@ -1,7 +1,7 @@
 import { Offer } from '../../types/offer';
 import { Link } from 'react-router-dom';
 
-type CardProps = {
+type CardNearbyProps = {
   offer: Offer;
   onListCardHover: (arg: number | null) => void;
   className: string;
@@ -9,7 +9,7 @@ type CardProps = {
   starsSpanWidth: number;
 }
 
-function Card({ offer, onListCardHover, className, imageClassName, starsSpanWidth }: CardProps): JSX.Element {
+function CardNearby({ offer, onListCardHover, className, imageClassName, starsSpanWidth }: CardNearbyProps): JSX.Element {
 
   const renderPremiumLabel = () => {
     if (offer.isPremium) {
@@ -72,4 +72,4 @@ function Card({ offer, onListCardHover, className, imageClassName, starsSpanWidt
   );
 }
 
-export default Card;
+export default CardNearby;
