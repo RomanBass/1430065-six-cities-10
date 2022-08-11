@@ -10,10 +10,10 @@ type CardListProps = {
 }
 
 function CardList({ offers, onListCardHover, className, imageClassName, starsSpanWidth}: CardListProps): JSX.Element {
-  const OffersList = offers.map((offer) => <Card key={offer.id} offer={offer} onListCardHover={onListCardHover} className={className} imageClassName={imageClassName} starsSpanWidth={starsSpanWidth}/>);
+  const offersList = offers.map((offer) => <Card key={offer.id} offer={offer} onListCardHover={onListCardHover} className={className} imageClassName={imageClassName} starsSpanWidth={starsSpanWidth}/>);
 
   return (
-    <div className="cities__places-list places__list tabs__content">{OffersList}</div>
+    <div className="cities__places-list places__list tabs__content">{offersList}</div>
   );
 }
 
