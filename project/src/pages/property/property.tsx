@@ -152,7 +152,7 @@ function Property({ offers, reviews }: RoomProps): JSX.Element {
             <section className="near-places places">
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
 
-              <CardNearbyList offers={offers.slice(1)} onListCardHover={() => null} className={'near-places__card place-card'} imageClassName={'near-places__image-wrapper place-card__image-wrapper'} starsSpanWidth={100}/>
+              <CardNearbyList offers={offers.filter((offer) => offer !== currentOffer)} onListCardHover={() => null} className={'near-places__card place-card'} imageClassName={'near-places__image-wrapper place-card__image-wrapper'} starsSpanWidth={100}/>
 
             </section>
           </div>
