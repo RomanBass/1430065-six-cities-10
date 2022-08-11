@@ -107,7 +107,7 @@ function Main({ rentalOffersNumber }: MainScreenProps): JSX.Element {
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map offer={offers[0]} offers={offers} selectedOffer={selectedOffer}/>
+                <Map city={offers[0].city} offers={offers} selectedOffer={selectedOffer}/>
               </section>
             </div>
           </div>

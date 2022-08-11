@@ -144,7 +144,7 @@ function Property({ offers, reviews }: RoomProps): JSX.Element {
             </div>
 
             <section className="property__map map">
-              <Map offer={offers[0]} offers={offers.slice(1)} selectedOffer={undefined}/>
+              <Map city={offers[0].city} offers={offers.slice(1)} selectedOffer={undefined}/>
             </section>
 
           </section>
