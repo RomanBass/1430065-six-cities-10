@@ -9,7 +9,7 @@ export const offers: Offer[] = [
         longitude: 4.895168,
         zoom: 10,
       },
-      name: 'Amsterdam #1',
+      name: 'Amsterdam',
     },
     description: 'Amsterdam 1st hotel description',
     goods: [
@@ -48,7 +48,7 @@ export const offers: Offer[] = [
         longitude: 4.895168,
         zoom: 10,
       },
-      name: 'Amsterdam #2',
+      name: 'Amsterdam',
     },
     description: 'Amsterdam 2nd hotel description',
     goods: [
@@ -87,7 +87,7 @@ export const offers: Offer[] = [
         longitude: 4.895168,
         zoom: 10,
       },
-      name: 'Amsterdam #3',
+      name: 'Amsterdam',
     },
     description: 'Amsterdam 3rd hotel description',
     goods: [
@@ -126,7 +126,7 @@ export const offers: Offer[] = [
         longitude: 4.895168,
         zoom: 10,
       },
-      name: 'Amsterdam #4',
+      name: 'Amsterdam',
     },
     description: 'Amsterdam 4th hotel description',
     goods: [
