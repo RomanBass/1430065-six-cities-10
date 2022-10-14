@@ -211,11 +211,11 @@ export const offers: Offer[] = [
     ],
     host: {
       avatarUrl: 'img/img_avatar_2.png',
-      id: 6,
+      id: 5,
       isPro: false,
       name: 'John',
     },
-    id: 2,
+    id: 6,
     images: [
       'img/off2_img1.png', 'img/off2_img2.png', 'img/off2_img3.png', 'img/off2_img4.png', 'img/off2_img5.png', 'img/off2_img6.png',
     ],
