@@ -3,14 +3,14 @@ import { changeCity, fillOffers } from './action';
 import { offers } from '../mocks/offers';
 
 const initialState = {
-  city: offers[0].city.name,
+  activeCity: 'Paris',
   offersList: offers,
 };
 
 const reducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(changeCity, (state) => {
-      state.city = 'Zero City';
+    .addCase(changeCity, (state, action) => {
+      state.activeCity = action.payload;
     })
     .addCase(fillOffers, (state) => {
       state.offersList = [];
