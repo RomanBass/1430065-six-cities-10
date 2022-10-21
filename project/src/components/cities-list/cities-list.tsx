@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { changeCity } from '../../store/action';
+import { changeCity, fillOffers } from '../../store/action';
 
 const cities: string[] = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
 
@@ -13,6 +13,7 @@ function CitiesList(): JSX.Element {
       <a onClick={(evt) => {
         evt.preventDefault();
         dispatch(changeCity(city));
+        dispatch(fillOffers(city));
       }}
       className={`locations__item-link tabs__item ${activeCity === city ? 'tabs__item--active' : ''}`} href="/"
       >

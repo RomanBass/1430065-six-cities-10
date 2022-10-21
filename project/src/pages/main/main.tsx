@@ -75,7 +75,7 @@ function Main({ rentalOffersNumber }: MainScreenProps): JSX.Element {
               </form>
 
               <CardList offers={offers} onListCardHover={onListCardHover} className={'cities__card place-card'}
-                imageClassName={'cities__image-wrapper place-card__image-wrapper'} starsSpanWidth={80} selectedCity={'Amsterdam'}
+                imageClassName={'cities__image-wrapper place-card__image-wrapper'} starsSpanWidth={80}
               />
 
             </section>

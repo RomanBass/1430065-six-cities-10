@@ -7,13 +7,11 @@ type CardListProps = {
   className: string;
   imageClassName: string;
   starsSpanWidth: number;
-  selectedCity: string;
 }
 
 function CardList(
-  { offers, onListCardHover, className, imageClassName, starsSpanWidth, selectedCity}: CardListProps): JSX.Element {
+  { offers, onListCardHover, className, imageClassName, starsSpanWidth}: CardListProps): JSX.Element {
   const offersList = offers
-    .filter((offer) => offer.city.name === selectedCity)
     .map((offer) => (
       <Card key={offer.id} offer={offer} onListCardHover={onListCardHover}
         className={className} imageClassName={imageClassName} starsSpanWidth={starsSpanWidth}
