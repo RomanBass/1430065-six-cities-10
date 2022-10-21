@@ -1,8 +1,7 @@
-import {Offers} from '../../types/offer';
 import Card from '../card/card';
+import {useAppSelector} from '../../hooks';
 
 type CardListProps = {
-  offers: Offers;
   onListCardHover:(arg:number|null) => void;
   className: string;
   imageClassName: string;
@@ -10,8 +9,10 @@ type CardListProps = {
 }
 
 function CardList(
-  { offers, onListCardHover, className, imageClassName, starsSpanWidth}: CardListProps): JSX.Element {
-  const offersList = offers
+  { onListCardHover, className, imageClassName, starsSpanWidth}: CardListProps): JSX.Element {
+  const offersBySelectedCity = useAppSelector((state) => state.offersList);
+
+  const offersList = offersBySelectedCity
     .map((offer) => (
       <Card key={offer.id} offer={offer} onListCardHover={onListCardHover}
         className={className} imageClassName={imageClassName} starsSpanWidth={starsSpanWidth}
