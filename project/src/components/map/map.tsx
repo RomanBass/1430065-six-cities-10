@@ -26,8 +26,6 @@ function Map(props: MapProps): JSX.Element {
   const {selectedOffer} = props;
   const mapRef = useRef(null);
 
-  //const activeCity = useAppSelector((state) => state.activeCity);
-
   const offersBySelectedCity = useAppSelector((state) => state.offersList);
 
   const map = useMap(mapRef, offersBySelectedCity[0].city);
