@@ -7,11 +7,7 @@ import {Offer} from '../../types/offer';
 import CitiesList from '../../components/cities-list/cities-list';
 import {useAppSelector} from '../../hooks';
 
-type MainScreenProps = {
-  rentalOffersNumber: number;
-}
-
-function Main({ rentalOffersNumber }: MainScreenProps): JSX.Element {
+function Main(): JSX.Element {
 
   const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>(undefined);
 

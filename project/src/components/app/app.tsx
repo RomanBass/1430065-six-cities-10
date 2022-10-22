@@ -10,16 +10,15 @@ import { AppRoute, AuthorizationStatus } from '../../const';
 import PrivateRoute from '../private-route/private-route';
 
 type AppScreenProps = {
-  rentalOffersNumber: number;
   offers: Offers;
   reviews:Reviews;
 }
 
-function App({ rentalOffersNumber, offers, reviews }: AppScreenProps): JSX.Element {
+function App({ offers, reviews }: AppScreenProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={AppRoute.RootPath} element={<Main rentalOffersNumber={rentalOffersNumber} />} />
+        <Route path={AppRoute.RootPath} element={<Main/>} />
         <Route path={AppRoute.LoginPath} element={<Login />} />
         <Route path={AppRoute.FavoritesPath} element={
           <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>

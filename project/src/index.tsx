@@ -10,15 +10,10 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
 
-// const Setting = {
-//   RENTAL_OFFERS_NUMBER: 5,
-// };
-
 root.render(
   <React.StrictMode>
     <Provider store={store}>
       <App
-        rentalOffersNumber={offers.length}
         offers={offers}
         reviews={reviews}
       />
