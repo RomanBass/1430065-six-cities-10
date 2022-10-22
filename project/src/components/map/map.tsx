@@ -33,6 +33,8 @@ function Map(props: MapProps): JSX.Element {
   useEffect(() => {
 
     if (map) {
+      map.panTo([offersBySelectedCity[0].city.location.latitude, offersBySelectedCity[0].city.location.longitude]);
+
       offersBySelectedCity.forEach((property) => {
         const marker = new Marker({
           lat: property.location.latitude,
