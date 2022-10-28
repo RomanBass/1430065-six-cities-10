@@ -1,9 +1,9 @@
 import 'leaflet/dist/leaflet.css';
-import { Icon, Marker} from 'leaflet';
+import { Icon, Marker } from 'leaflet';
 import { useEffect, useRef } from 'react';
 import useMap from '../../hooks/useMap';
-import {Offer} from '../../types/offer';
-import {URL_MARKER_DEFAULT, URL_MARKER_CURRENT} from '../../const';
+import { Offer } from '../../types/offer';
+import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../../const';
 import { useAppSelector } from '../../hooks';
 
 type MapProps = {
@@ -23,16 +23,22 @@ const currentCustomIcon = new Icon({
 });
 
 function Map(props: MapProps): JSX.Element {
-  const {selectedOffer} = props;
+  const { selectedOffer } = props;
   const mapRef = useRef(null);
 
   const offersBySelectedCity = useAppSelector((state) => state.offersList);
 
   const map = useMap(mapRef, offersBySelectedCity[0].city);
+  const emptyMarker = new Marker({
+    lat: 0,
+    lng: 0,
+  });
+  const markersRef = useRef([emptyMarker]);
 
   useEffect(() => {
 
     if (map) {
+
       map.panTo([offersBySelectedCity[0].city.location.latitude, offersBySelectedCity[0].city.location.longitude]);
 
       offersBySelectedCity.forEach((property) => {
@@ -45,12 +51,28 @@ function Map(props: MapProps): JSX.Element {
           ? currentCustomIcon
           : defaultCustomIcon)
           .addTo(map);
+
+        let prevMarkers = markersRef.current.filter((elem) =>
+          elem.getLatLng().lat.toFixed(0) !== marker.getLatLng().lat.toFixed(0) ||
+          elem.getLatLng().lng.toFixed(0) !== marker.getLatLng().lng.toFixed(0)
+        );
+
+        prevMarkers.forEach((prevMarker) => {
+          map.removeLayer(prevMarker);
+        });
+
+        markersRef.current.push(marker);
+        markersRef.current.filter((el) => !prevMarkers.includes(el));
+        prevMarkers = [];
+
+        //eslint-disable-next-line no-console
+        console.log(markersRef.current);
+
       });
     }
-
   }, [map, offersBySelectedCity, selectedOffer]);
 
-  return <div style={{height: '100%'}} ref={mapRef}></div>;
+  return <div style={{ height: '100%' }} ref={mapRef}></div>;
 }
 
 export default Map;
