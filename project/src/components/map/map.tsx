@@ -33,7 +33,7 @@ function Map(props: MapProps): JSX.Element {
     lat: 0,
     lng: 0,
   });
-  const markersRef = useRef([emptyMarker]);
+  const markersRef = useRef([{currentMarker: emptyMarker, currentCity: offersBySelectedCity[0].city.name}]);
 
   useEffect(() => {
 
@@ -52,17 +52,15 @@ function Map(props: MapProps): JSX.Element {
           : defaultCustomIcon)
           .addTo(map);
 
-        let prevMarkers = markersRef.current.filter((elem) =>
-          elem.getLatLng().lat.toFixed(0) !== marker.getLatLng().lat.toFixed(0) ||
-          elem.getLatLng().lng.toFixed(0) !== marker.getLatLng().lng.toFixed(0)
-        );
+        markersRef.current.push({currentMarker: marker, currentCity: offersBySelectedCity[0].city.name});
+
+        let prevMarkers = markersRef.current.filter((elem) => elem.currentCity !== offersBySelectedCity[0].city.name);
 
         prevMarkers.forEach((prevMarker) => {
-          map.removeLayer(prevMarker);
+          map.removeLayer(prevMarker.currentMarker);
+          markersRef.current = markersRef.current.filter((elem) => elem.currentCity !== prevMarker.currentCity);
         });
 
-        markersRef.current.push(marker);
-        markersRef.current.filter((el) => !prevMarkers.includes(el));
         prevMarkers = [];
 
         //eslint-disable-next-line no-console
