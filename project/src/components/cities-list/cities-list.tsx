@@ -23,7 +23,8 @@ function CitiesList(): JSX.Element {
   ));
 
   return (
-    <ul className="locations__list tabs__list">{CitiesItems}
+    <ul className="locations__list tabs__list">
+      {CitiesItems}
     </ul>
   );
 }
