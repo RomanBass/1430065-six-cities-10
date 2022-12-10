@@ -1,10 +1,11 @@
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { changeCity, fillOffers } from '../../store/action';
+import { changeCity, fillOffers, sortOffers } from '../../store/action';
 
 const cities: string[] = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
 
 function CitiesList(): JSX.Element {
   const activeCity = useAppSelector((state) => state.activeCity);
+  const activeSortingOption = useAppSelector((state) => state.activeSortingOption);
   const dispatch = useAppDispatch();
 
 
@@ -14,6 +15,7 @@ function CitiesList(): JSX.Element {
         evt.preventDefault();
         dispatch(changeCity(city));
         dispatch(fillOffers(city));
+        dispatch(sortOffers(activeSortingOption));
       }}
       className={`locations__item-link tabs__item ${activeCity === city ? 'tabs__item--active' : ''}`} href="/"
       >

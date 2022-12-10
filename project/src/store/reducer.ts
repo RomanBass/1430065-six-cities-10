@@ -1,11 +1,12 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCity, fillOffers, changeSortingOption, sortOffers } from './action';
+import { changeCity, fillOffers, changeSortingOption, sortOffers, setSortingMenuVisibility } from './action';
 import { offers } from '../mocks/offers';
 
 const initialState = {
   activeCity: 'Paris',
   offersList: offers.filter((offer) => offer.city.name === 'Paris'),
   activeSortingOption: 'Popular',
+  isSortingMenuVisible: false,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -18,6 +19,7 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(changeSortingOption, (state, action) => {
       state.activeSortingOption = action.payload;
+      state.isSortingMenuVisible = false;
     })
     .addCase(sortOffers, (state, action) => {
       switch (action.payload) {
@@ -33,6 +35,9 @@ const reducer = createReducer(initialState, (builder) => {
         default:
           state.offersList.sort((a, b) => a.id - b.id);
       }
+    })
+    .addCase(setSortingMenuVisibility, (state) => {
+      state.isSortingMenuVisible = !state.isSortingMenuVisible;
     });
 
 });
