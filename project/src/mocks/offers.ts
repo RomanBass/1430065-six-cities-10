@@ -190,7 +190,7 @@ export const offers: Offer[] = [
     maxAdults: 1,
     previewImage: 'img/apartment-01.jpg',
     price: 210,
-    rating: 5.8,
+    rating: 2.8,
     title: 'Paris 1st hotel title',
     type: 'Apartment',
   },

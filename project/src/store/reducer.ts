@@ -1,4 +1,4 @@
-import {createReducer} from '@reduxjs/toolkit';
+import { createReducer } from '@reduxjs/toolkit';
 import { changeCity, fillOffers, changeSortingOption, sortOffers } from './action';
 import { offers } from '../mocks/offers';
 
@@ -20,11 +20,21 @@ const reducer = createReducer(initialState, (builder) => {
       state.activeSortingOption = action.payload;
     })
     .addCase(sortOffers, (state, action) => {
-      if (action.payload === 'Price: high to low') {
-        state.offersList.sort((a, b) => b.price - a.price);
+      switch (action.payload) {
+        case 'Price: high to low':
+          state.offersList.sort((a, b) => b.price - a.price);
+          break;
+        case 'Price: low to high':
+          state.offersList.sort((a, b) => a.price - b.price);
+          break;
+        case 'Top rated first':
+          state.offersList.sort((a, b) => b.rating - a.rating);
+          break;
+        default:
+          state.offersList.sort((a, b) => a.id - b.id);
       }
     });
 
 });
 
-export {reducer};
+export { reducer };
