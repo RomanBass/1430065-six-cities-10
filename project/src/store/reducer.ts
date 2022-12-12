@@ -32,14 +32,29 @@ const reducer = createReducer(initialState, (builder) => {
         case 'Top rated first':
           state.offersList.sort((a, b) => b.rating - a.rating);
           break;
-        default:
+        case 'Popular':
           state.offersList.sort((a, b) => a.id - b.id);
+          break;
       }
     })
     .addCase(setSortingMenuVisibility, (state) => {
       state.isSortingMenuVisible = !state.isSortingMenuVisible;
     });
-
 });
-
 export { reducer };
+// .addCase(sortOffers, (state, action) => {
+//   const popularOffers = state.offersList.slice();
+//   switch (action.payload) {
+//     case 'Price: high to low':
+//       state.offersList.sort((a, b) => b.price - a.price);
+//       break;
+//     case 'Price: low to high':
+//       state.offersList.sort((a, b) => a.price - b.price);
+//       break;
+//     case 'Top rated first':
+//       state.offersList.sort((a, b) => b.rating - a.rating);
+//       break;
+//     case 'Popular':
+//       state.offersList = popularOffers;
+//       break;
+//   }
