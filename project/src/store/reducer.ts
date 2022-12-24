@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCity, fillOffers, changeSortingOption, sortOffers, setSortingMenuVisibility } from './action';
+import { changeCity, fillOffers, changeSortingOption, sortOffers, setSortingMenuVisibility, loadOffers } from './action';
 import { offers } from '../mocks/offers';
 
 const initialState = {
@@ -7,6 +7,7 @@ const initialState = {
   offersList: offers.filter((offer) => offer.city.name === 'Paris'),
   activeSortingOption: 'Popular',
   isSortingMenuVisible: false,
+  offers,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -26,6 +27,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setSortingMenuVisibility, (state) => {
       state.isSortingMenuVisible = !state.isSortingMenuVisible;
+    })
+    .addCase(loadOffers, (state, action) => {
+      state.offers = action.payload;
     });
 });
 export { reducer };
