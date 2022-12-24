@@ -1,22 +1,34 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { changeCity, fillOffers, changeSortingOption, sortOffers, setSortingMenuVisibility, loadOffers } from './action';
-import { offers } from '../mocks/offers';
+//import { offers } from '../mocks/offers';
+import { Offers } from '../types/offer';
 
-const initialState = {
+type InitialState = {
+  activeCity: string,
+  offersList: Offers,
+  activeSortingOption: string,
+  isSortingMenuVisible: boolean,
+  offers: Offers,
+
+}
+const initialState: InitialState = {
   activeCity: 'Paris',
-  offersList: offers.filter((offer) => offer.city.name === 'Paris'),
+  offersList: [],
   activeSortingOption: 'Popular',
   isSortingMenuVisible: false,
-  offers,
+  offers: [],
 };
 
 const reducer = createReducer(initialState, (builder) => {
   builder
+    .addCase(loadOffers, (state, action) => {
+      state.offers = action.payload;
+    })
     .addCase(changeCity, (state, action) => {
       state.activeCity = action.payload;
     })
     .addCase(fillOffers, (state, action) => {
-      state.offersList = offers.filter((offer) => offer.city.name === action.payload);
+      state.offersList = state.offers.filter((offer) => offer.city.name === action.payload);
     })
     .addCase(changeSortingOption, (state, action) => {
       state.activeSortingOption = action.payload;
@@ -27,9 +39,6 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setSortingMenuVisibility, (state) => {
       state.isSortingMenuVisible = !state.isSortingMenuVisible;
-    })
-    .addCase(loadOffers, (state, action) => {
-      state.offers = action.payload;
     });
 });
 export { reducer };
