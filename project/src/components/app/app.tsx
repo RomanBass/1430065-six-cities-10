@@ -4,17 +4,17 @@ import Login from '../../pages/login/login';
 import Favorites from '../../pages/favorites/favorites';
 import Room from '../../pages/property/property';
 import NotFound from '../../components/not-found/not-found';
-import {Offers} from '../../types/offer';
 import {Reviews} from '../../types/review';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import PrivateRoute from '../private-route/private-route';
+import { useAppSelector } from '../../hooks';
 
 type AppScreenProps = {
-  offers: Offers;
   reviews:Reviews;
 }
 
-function App({ offers, reviews }: AppScreenProps): JSX.Element {
+function App({ reviews }: AppScreenProps): JSX.Element {
+  const offers = useAppSelector((state) => state.offers);
   return (
     <BrowserRouter>
       <Routes>
