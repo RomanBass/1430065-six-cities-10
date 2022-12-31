@@ -1,6 +1,5 @@
 import CardList from '../../components/offers-list/offers-list';
 import Logo from '../../components/logo/logo';
-import { offers } from '../../mocks/offers';
 import { useState } from 'react';
 import Map from '../../components/map/map';
 import { Offer } from '../../types/offer';
@@ -10,6 +9,7 @@ import { useAppSelector } from '../../hooks';
 
 function Main(): JSX.Element {
 
+  const offers = useAppSelector((state) => state.offers);
   const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>(undefined);
 
   const onListCardHover = (listCardId: number | null) => {

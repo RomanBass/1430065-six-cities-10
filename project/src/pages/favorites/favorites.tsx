@@ -1,8 +1,9 @@
 import Logo from '../../components/logo/logo';
-import { offers } from '../../mocks/offers';
 import {Link} from 'react-router-dom';
+import { useAppSelector } from '../../hooks';
 
 function Favorites(): JSX.Element {
+  const offers = useAppSelector((state) => state.offers);
   const renderFavoriteCards = offers.filter((offer) => offer.isFavorite === true)
     .map((offer) =>
       (
