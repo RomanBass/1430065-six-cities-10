@@ -7,3 +7,4 @@ export const changeSortingOption = createAction('changeSortingOption', (sortingO
 export const sortOffers = createAction('sortOffers', (sortingOption) => ({payload: sortingOption}));
 export const setSortingMenuVisibility = createAction('setSortingMenuVisibility');
 export const loadOffers = createAction<Offers>('data/loadOffers');
+export const setDataLoadedStatus = createAction<boolean>('data/setDataLoadedStatus');

@@ -1,5 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCity, fillOffers, changeSortingOption, sortOffers, setSortingMenuVisibility, loadOffers } from './action';
+import { changeCity, fillOffers, changeSortingOption, sortOffers,
+  setSortingMenuVisibility, loadOffers, setDataLoadedStatus } from './action';
 import { Offers } from '../types/offer';
 
 type InitialState = {
@@ -8,14 +9,16 @@ type InitialState = {
   activeSortingOption: string,
   isSortingMenuVisible: boolean,
   offers: Offers,
-
+  isDataLoaded: boolean,
 }
+
 const initialState: InitialState = {
   activeCity: 'Paris',
   offersList: [],
   activeSortingOption: 'Popular',
   isSortingMenuVisible: false,
   offers: [],
+  isDataLoaded: true,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -39,6 +42,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setSortingMenuVisibility, (state) => {
       state.isSortingMenuVisible = !state.isSortingMenuVisible;
+    })
+    .addCase(setDataLoadedStatus, (state, action) => {
+      state.isDataLoaded = action.payload;
     });
 });
 export { reducer };
