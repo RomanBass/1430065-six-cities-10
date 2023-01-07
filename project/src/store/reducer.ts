@@ -20,7 +20,7 @@ const initialState: InitialState = {
   activeSortingOption: 'Popular',
   isSortingMenuVisible: false,
   offers: [],
-  isDataLoaded: true,
+  isDataLoaded: false,
   authorizationStatus: AuthorizationStatus.Unknown,
 };
 

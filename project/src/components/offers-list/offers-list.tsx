@@ -15,7 +15,7 @@ function CardList(
   const activeSortingOption = useAppSelector((state) => state.activeSortingOption);
   const isDataLoaded = useAppSelector((state) => state.isDataLoaded);
 
-  if (isDataLoaded) {
+  if (!isDataLoaded) {
     return (
       <LoadingScreen />
     );
