@@ -4,7 +4,7 @@ import { useAppSelector } from '../../hooks';
 
 function Favorites(): JSX.Element {
   const offers = useAppSelector((state) => state.offers);
-  const renderFavoriteCards = offers.filter((offer) => offer.isFavorite === true)
+  const renderFavoriteCards = offers.filter((offer) => offer.isFavorite === false)
     .map((offer) =>
       (
         <li key={offer.id} className="favorites__locations-items">
