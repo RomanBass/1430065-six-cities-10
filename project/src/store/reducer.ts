@@ -21,7 +21,7 @@ const initialState: InitialState = {
   isSortingMenuVisible: false,
   offers: [],
   isDataLoaded: false,
-  authorizationStatus: AuthorizationStatus.NoAuth,
+  authorizationStatus: AuthorizationStatus.Unknown,
 };
 
 const reducer = createReducer(initialState, (builder) => {
