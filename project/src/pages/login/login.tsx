@@ -8,12 +8,12 @@ import { useNavigate } from 'react-router-dom';
 function Login(): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
-
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const onSubmit = (authData: AuthData) => {
     dispatch(loginAction(authData));
+    navigate('/');
   };
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
@@ -26,7 +26,6 @@ function Login(): JSX.Element {
       });
     }
   };
-
 
   return (
     <div className="page page--gray page--login">
@@ -70,7 +69,6 @@ function Login(): JSX.Element {
                 />
               </div>
               <button
-                onClick={() => navigate('/')}
                 className="login__submit
                 form__submit button"
                 type="submit"
