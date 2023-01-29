@@ -5,12 +5,14 @@ import Map from '../../components/map/map';
 import { Offer } from '../../types/offer';
 import CitiesList from '../../components/cities-list/cities-list';
 import SortingOptions from '../../components/sorting-optiones/sorting-options';
-import { useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { AuthorizationStatus } from '../../const';
 import { Link } from 'react-router-dom';
+import { logoutAction } from '../../store/api-actions';
 
 function Main(): JSX.Element {
 
+  const dispatch = useAppDispatch();
   const offers = useAppSelector((state) => state.offers);
   const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>(undefined);
 
@@ -36,9 +38,15 @@ function Main(): JSX.Element {
             </a>
           </li>
           <li className="header__nav-item">
-            <a className="header__nav-link" href="/">
+            <Link
+              onClick={(evt) => {
+                evt.preventDefault();
+                dispatch(logoutAction());
+              }}
+              className="header__nav-link" to="/"
+            >
               <span className="header__signout">Sign out</span>
-            </a>
+            </Link>
           </li>
         </ul>
       );
