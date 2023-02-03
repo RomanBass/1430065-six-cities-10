@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Main from '../../pages/main/main';
 import Login from '../../pages/login/login';
 import Favorites from '../../pages/favorites/favorites';
@@ -8,6 +8,8 @@ import {Reviews} from '../../types/review';
 import { AppRoute } from '../../const';
 import PrivateRoute from '../private-route/private-route';
 import { useAppSelector } from '../../hooks';
+import HistoryRouter from '../history-route';
+import browserHistory from '../../browser-history';
 
 type AppScreenProps = {
   reviews:Reviews;
@@ -17,7 +19,7 @@ function App({ reviews }: AppScreenProps): JSX.Element {
   const offers = useAppSelector((state) => state.offers);
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   return (
-    <BrowserRouter>
+    <HistoryRouter history={browserHistory}>
       <Routes>
         <Route path={AppRoute.RootPath} element={<Main/>} />
         <Route path={AppRoute.LoginPath} element={<Login />} />
@@ -31,9 +33,7 @@ function App({ reviews }: AppScreenProps): JSX.Element {
         <Route path={AppRoute.WrongPath} element={<NotFound />} />
 
       </Routes>
-
-    </BrowserRouter>
-
+    </HistoryRouter>
   );
 }
 

@@ -10,3 +10,4 @@ export const setSortingMenuVisibility = createAction('setSortingMenuVisibility')
 export const loadOffers = createAction<Offers>('data/loadOffers');
 export const setDataLoadedStatus = createAction<boolean>('data/setDataLoadedStatus');
 export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
+export const redirectToRoute = createAction<string>('redirectToRoute');
