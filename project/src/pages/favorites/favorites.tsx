@@ -2,8 +2,10 @@ import Logo from '../../components/logo/logo';
 import {Link} from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { logoutAction } from '../../store/api-actions';
+import { useNavigate } from 'react-router-dom';
 
 function Favorites(): JSX.Element {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const offers = useAppSelector((state) => state.offers);
   const renderFavoriteCards = offers.filter((offer) => offer.isFavorite === false)
@@ -74,6 +76,7 @@ function Favorites(): JSX.Element {
                     onClick={(evt) => {
                       evt.preventDefault();
                       dispatch(logoutAction());
+                      navigate('/');
                     }}
                     className="header__nav-link"
                     to="/"
