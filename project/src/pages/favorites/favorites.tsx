@@ -3,11 +3,20 @@ import {Link} from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { logoutAction } from '../../store/api-actions';
 import { useNavigate } from 'react-router-dom';
+import LoadingScreen from '../loading-screen/loading-screen';
+import { AuthorizationStatus } from '../../const';
 
 function Favorites(): JSX.Element {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const offers = useAppSelector((state) => state.offers);
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+
+  if (authorizationStatus !== AuthorizationStatus.Auth) {
+    return (
+      <LoadingScreen />
+    );
+  }
   const renderFavoriteCards = offers.filter((offer) => offer.isFavorite === false)
     .map((offer) =>
       (

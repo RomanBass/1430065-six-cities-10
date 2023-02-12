@@ -1,15 +1,21 @@
 import Logo from '../../components/logo/logo';
 import { FormEvent, useRef } from 'react';
-import { useAppDispatch } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { AuthData } from '../../types/auth-data';
 import { loginAction } from '../../store/api-actions';
 import { useNavigate } from 'react-router-dom';
+import { AuthorizationStatus } from '../../const';
 
 function Login(): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+
+  if (authorizationStatus === AuthorizationStatus.Auth) {
+    navigate('/');
+  }
 
   const onSubmit = (authData: AuthData) => {
     dispatch(loginAction(authData));
