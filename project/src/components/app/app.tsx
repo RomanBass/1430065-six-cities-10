@@ -5,11 +5,12 @@ import Favorites from '../../pages/favorites/favorites';
 import Room from '../../pages/property/property';
 import NotFound from '../../components/not-found/not-found';
 import {Reviews} from '../../types/review';
-import { AppRoute } from '../../const';
+import { AppRoute, AuthorizationStatus } from '../../const';
 import PrivateRoute from '../private-route/private-route';
 import { useAppSelector } from '../../hooks';
 import HistoryRouter from '../history-route';
 import browserHistory from '../../browser-history';
+import LoadingScreen from '../../pages/loading-screen/loading-screen';
 
 type AppScreenProps = {
   reviews:Reviews;
@@ -18,6 +19,13 @@ type AppScreenProps = {
 function App({ reviews }: AppScreenProps): JSX.Element {
   const offers = useAppSelector((state) => state.offers);
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+
+  if (authorizationStatus === AuthorizationStatus.Unknown) {
+    return (
+      <LoadingScreen />
+    );
+  }
+
   return (
     <HistoryRouter history={browserHistory}>
       <Routes>
