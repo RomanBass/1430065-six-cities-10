@@ -4,7 +4,8 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { AuthData } from '../../types/auth-data';
 import { loginAction } from '../../store/api-actions';
 import { useNavigate } from 'react-router-dom';
-import { AuthorizationStatus } from '../../const';
+import { AppRoute, AuthorizationStatus } from '../../const';
+import { Navigate } from 'react-router-dom';
 
 function Login(): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
@@ -14,12 +15,14 @@ function Login(): JSX.Element {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
   if (authorizationStatus === AuthorizationStatus.Auth) {
-    navigate('/');
+    return (
+      <Navigate to={AppRoute.RootPath}/>
+    );
   }
 
   const onSubmit = (authData: AuthData) => {
     dispatch(loginAction(authData));
-    navigate('/');
+    navigate(AppRoute.RootPath);
   };
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
