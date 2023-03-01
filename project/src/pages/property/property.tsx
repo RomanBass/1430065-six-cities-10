@@ -6,7 +6,6 @@ import Form from '../../components/form/form';
 import ReviewsList from '../../components/reviews-list/reviews-list';
 import Map from '../../components/map/map';
 import CardNearbyList from '../../components/offers-nearby-list/offers-nearby-list';
-//import {offers} from '../../mocks/offers';
 
 type RoomProps = {
   offers: Offers;

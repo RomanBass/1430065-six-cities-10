@@ -8,7 +8,7 @@ import { checkAuthAction, fetchOffersAction, fetchParticularOfferAction} from '.
 
 store.dispatch(fetchOffersAction());
 store.dispatch(checkAuthAction());
-store.dispatch(fetchParticularOfferAction());
+store.dispatch(fetchParticularOfferAction(2));
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,

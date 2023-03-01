@@ -22,15 +22,14 @@ export const fetchOffersAction = createAsyncThunk<void, undefined, {
   },
 );
 
-export const fetchParticularOfferAction = createAsyncThunk<void, undefined, {
+export const fetchParticularOfferAction = createAsyncThunk<void, number, {
   dispatch: AppDispatch,
   state: State,
   extra: AxiosInstance
 }>(
   'data/fetchParticularOffer',
-  async (_arg, {dispatch, extra: api}) => {
-    const {data} = await api.get<Offer>('/hotels/2');
-    //dispatch(setDataLoadedStatus(true));
+  async (id, {dispatch, extra: api}) => {
+    const {data} = await api.get<Offer>(`/hotels/${id}`);
     dispatch(loadParticularOffer(data));
   },
 );
