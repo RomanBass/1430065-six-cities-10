@@ -13,3 +13,4 @@ export const requireAuthorization = createAction<AuthorizationStatus>('user/requ
 export const redirectToRoute = createAction<string>('redirectToRoute');
 
 export const loadParticularOffer = createAction('data/loadParticularOffer', (id) => ({payload: id}));
+export const setParticularOfferLoadedStatus = createAction<boolean>('data/setParticularOfferLoadedStatus');

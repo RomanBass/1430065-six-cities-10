@@ -6,6 +6,10 @@ import Form from '../../components/form/form';
 import ReviewsList from '../../components/reviews-list/reviews-list';
 import Map from '../../components/map/map';
 import CardNearbyList from '../../components/offers-nearby-list/offers-nearby-list';
+import { useAppSelector } from '../../hooks';
+import { store } from '../../store';
+import { fetchParticularOfferAction } from '../../store/api-actions';
+import LoadingScreen from '../loading-screen/loading-screen';
 
 type RoomProps = {
   offers: Offers;
@@ -13,11 +17,24 @@ type RoomProps = {
 }
 
 function Property({ offers, reviews }: RoomProps): JSX.Element {
+  const currentOffer = useAppSelector((state) => state.particularOffer);
+  const isParticularOfferLoaded = useAppSelector((state) => state.isParticularOfferLoaded);
   const { id } = useParams();
 
   if (id) {
+    store.dispatch(fetchParticularOfferAction(+id));
+  } else {
+    return <Navigate to='*' />;
+  }
 
-    const currentOffer = offers.find((offer) => offer.id === +id);
+  if (!isParticularOfferLoaded) {
+    return (
+      <LoadingScreen />
+    );
+  }
+  if (id) {
+
+    //const currentOffer = offers.find((offer) => offer.id === +id);
 
     if (!currentOffer) {
       return <Navigate to='*' />;
